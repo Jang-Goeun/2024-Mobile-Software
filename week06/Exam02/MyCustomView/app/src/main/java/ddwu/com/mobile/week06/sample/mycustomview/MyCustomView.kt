@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 
 const val TAG="MyCustomView"
@@ -27,6 +28,13 @@ class MyCustomView : View {
         attrs,
         defStyleAttr
     )
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        posX = event!!.x
+        posY = event!!.y
+        invalidate()
+        return true
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
