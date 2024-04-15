@@ -35,13 +35,10 @@ class MainActivity : AppCompatActivity() {
                 setTitle("대화상자 제목")
                 setMessage("대화상자 메시지")
                 setIcon(R.mipmap.ic_launcher_round)
-                setPositiveButton("확인", onOnClick)
-                setNegativeButton("취소") { p0: DialogInterface?, whichButton: Int ->
-                    Toast.makeText(this@MainActivity, "취소!", Toast.LENGTH_SHORT).show()
+                setPositiveButton("확인"){ p0: DialogInterface?, whichButton: Int ->
+                    Toast.makeText(this@MainActivity, "확인", Toast.LENGTH_SHORT).show()
                 }
-                setNeutralButton("대기", { p0: DialogInterface?, whichButton: Int ->
-                    Toast.makeText(this@MainActivity, "대기!", Toast.LENGTH_SHORT).show()
-                })
+                setNegativeButton("취소", null)
                 setCancelable(true)
             }
 
