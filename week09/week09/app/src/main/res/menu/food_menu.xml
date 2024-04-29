@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="중식" >
+        <menu >
+            <group >
+                <item
+                    android:id="@+id/food01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="짜장면" />
+                <item
+                    android:id="@+id/food02"
+                    android:title="짬뽕" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="한식" >
+        <menu >
+            <group >
+                <item
+                    android:id="@+id/food03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="김치찌개" />
+                <item
+                    android:id="@+id/food04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="순두부찌개" />
+            </group>
+        </menu>
+    </item>
+</menu>
