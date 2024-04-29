@@ -1,8 +1,10 @@
 package ddwu.mobile.week09
 
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,11 +23,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(mainBinding.root)
+
+        registerForContextMenu(mainBinding.tvText)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        super.onCreateContextMenu(menu, v, menuInfo)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.food_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, "Context!!", Toast.LENGTH_SHORT).show()
+        return true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
