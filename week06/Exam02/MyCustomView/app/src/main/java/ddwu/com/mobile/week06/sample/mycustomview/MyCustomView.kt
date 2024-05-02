@@ -29,13 +29,6 @@ class MyCustomView : View {
         defStyleAttr
     )
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        posX = event!!.x
-        posY = event!!.y
-        invalidate()
-        return true
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas?.drawColor(Color.LTGRAY)
