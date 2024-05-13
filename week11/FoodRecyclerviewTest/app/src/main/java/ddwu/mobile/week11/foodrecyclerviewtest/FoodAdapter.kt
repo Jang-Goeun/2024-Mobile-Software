@@ -1,5 +1,6 @@
 package ddwu.mobile.week11.foodrecyclerviewtest
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +32,39 @@ class FoodAdapter(val foods: ArrayList<FoodDto>) : RecyclerView.Adapter<FoodAdap
     }
 
     //inner class FoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    inner class FoodViewHolder(val itemBinding: ListItemBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    inner class FoodViewHolder(val itemBinding: ListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
+        val TAG = "FoodViewHolder"
+        init {
+//            itemBinding.root.setOnClickListener{
+//                listener.onItemClick(it, adapterPosition)
+//            }
+
+            itemBinding.root.setOnLongClickListener{
+                longClickListener.onItemLongClick(it, adapterPosition)
+            }
+        }
+    }
 //    val photo = view.findViewById<ImageView>(R.id.ivPhoto)
 //        val food = view.findViewById<TextView>(R.id.tvFood)
 //        val count = view.findViewById<TextView>(R.id.tvCount)
+
+//    interface  OnItemClickListener {
+//        fun onItemClick(view: View, position: Int)
+//    }
+//
+//    lateinit var listener: OnItemClickListener
+//
+//    fun setOnItemClickListner (listener: OnItemClickListener){
+//        this.listener = listener
+//    }
+
+    interface OnItemLongClickListener {
+        fun onItemLongClick(view: View, position: Int) : Boolean
+    }
+
+    lateinit var longClickListener: OnItemLongClickListener
+
+    fun setOnItemLongClickListener (longClickListener: OnItemLongClickListener){
+        this.longClickListener = longClickListener
+    }
 }

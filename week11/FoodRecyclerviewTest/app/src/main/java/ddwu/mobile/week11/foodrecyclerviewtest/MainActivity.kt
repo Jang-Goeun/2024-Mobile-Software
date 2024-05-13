@@ -1,6 +1,8 @@
 package ddwu.mobile.week11.foodrecyclerviewtest
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,5 +34,24 @@ class MainActivity : AppCompatActivity() {
         /*RecyclerView 에 레이아웃 매니저 및 Adapter 설정*/
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
+
+//        val listener = object : FoodAdapter.OnItemClickListener {
+//            override fun onItemClick(view: View, position: Int) {
+//                Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
+//                foods.removeAt(position)
+//                adapter.notifyDataSetChanged()
+//            }
+//        }
+//        adapter.setOnItemClickListner(listener)
+
+        val longClickListener = object : FoodAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(view: View, position: Int) : Boolean {
+                Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
+                foods.removeAt(position)
+                adapter.notifyDataSetChanged()
+                return true
+            }
+        }
+        adapter.setOnItemLongClickListener(longClickListener)
     }
 }
