@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'ddwu.com.mobile.foodexam'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "ddwu.com.mobile.foodexam"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
