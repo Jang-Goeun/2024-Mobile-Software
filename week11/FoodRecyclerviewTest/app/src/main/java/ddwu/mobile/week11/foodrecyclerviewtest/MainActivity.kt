@@ -1,9 +1,11 @@
 package ddwu.mobile.week11.foodrecyclerviewtest
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
 
         /*데이터 준비*/
@@ -46,9 +47,17 @@ class MainActivity : AppCompatActivity() {
 
         val longClickListener = object : FoodAdapter.OnItemLongClickListener {
             override fun onItemLongClick(view: View, position: Int) : Boolean {
-                Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
-                foods.removeAt(position)
-                adapter.notifyDataSetChanged()
+
+                val builder:AlertDialog.Builder = AlertDialog.Builder(this@MainActivity).apply {
+                    setMessage("${foods[position]}을 삭제하시겠습니까?")
+                    setPositiveButton("확인") { dialogInterface: DialogInterface?, i: Int ->
+                        foods.removeAt(position)
+                        adapter.notifyDataSetChanged()
+                    }
+                    setNegativeButton("취소", null)
+                }  // 롱클릭시 삭제할지 묻는 다이얼로그 생성
+                builder.show()
+                //Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
                 return true
             }
         }
